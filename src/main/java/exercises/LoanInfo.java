@@ -37,18 +37,6 @@ public final class LoanInfo {
 		return monthlyPaymentAmountIncents;
 	}
 	
-	/**
-	 * 
-	 * @param aAmount the borrow amount from input in dollar, e.x., 1000.15
-	 * @param aApr
-	 * @param aYear number of years. need to convert to months
-	 * @return
-	 */
-	public static LoanInfo createFromInput(double aAmount, double aApr, int aYear) {
-		long amountInCents = Math.round(aAmount * 100); //convert dollar to cents
-		int numberOfMonths = aYear * 12;
-		return new LoanInfo(amountInCents, aApr, numberOfMonths);
-	}
 	
 	/**
 	 * The basic formula is M = P * (J / (1 - (Math.pow(1/(1 + J), N)))).
@@ -68,13 +56,6 @@ public final class LoanInfo {
 		// M = P * (J / (1 - (Math.pow(1/(1 + J), N))));
 		double rc = amountBorrowedIncents * monthlyInterest * tmp;
 		return Math.round(rc);
-	}
-
-	@Override
-	public String toString() {
-		return "LoanInfo [amountBorrowedIncents=" + amountBorrowedIncents + ", apr=" + apr + ", initialTermMonths="
-				+ initialTermMonths + ", monthlyInterest=" + monthlyInterest + ", monthlyPaymentAmountIncents="
-				+ monthlyPaymentAmountIncents + "]";
 	}
 	
 }
